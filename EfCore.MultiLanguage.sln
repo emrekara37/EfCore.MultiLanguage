@@ -6,6 +6,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{893A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleProject", "SampleProject\SampleProject.csproj", "{0F6246AC-A94A-4C7A-87E4-3BE6BE17EB0F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EfCore.MultiLanguage.Lib", "src\EfCore.MultiLanguage.Lib\EfCore.MultiLanguage.Lib.csproj", "{FD37E9A0-530E-450E-869B-BE25CDA5DBC5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,11 +15,16 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{0F6246AC-A94A-4C7A-87E4-3BE6BE17EB0F} = {893A1AF1-6D66-431C-97DE-7614D304D3E1}
+		{FD37E9A0-530E-450E-869B-BE25CDA5DBC5} = {7ADF7604-DEF7-42CE-A66E-AB05A2A94ED8}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{0F6246AC-A94A-4C7A-87E4-3BE6BE17EB0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0F6246AC-A94A-4C7A-87E4-3BE6BE17EB0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F6246AC-A94A-4C7A-87E4-3BE6BE17EB0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F6246AC-A94A-4C7A-87E4-3BE6BE17EB0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD37E9A0-530E-450E-869B-BE25CDA5DBC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD37E9A0-530E-450E-869B-BE25CDA5DBC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD37E9A0-530E-450E-869B-BE25CDA5DBC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD37E9A0-530E-450E-869B-BE25CDA5DBC5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

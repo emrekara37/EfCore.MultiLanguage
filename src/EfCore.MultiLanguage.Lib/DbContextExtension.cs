@@ -1,35 +1,15 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
-namespace SampleProject
+namespace EfCore.MultiLanguage.Lib
 {
-    public class SampleDbContext : DbContext
+    public static class DbContextExtension
     {
-        public DbSet<Post> Posts { get; set; }
-        public DbSet<Language> Languages { get; set; }
-        public DbSet<Translation> Localizations { get; set; }
-        public DbSet<TranslationContent> LocalizationContents { get; set; }
-        public DbSet<User> Users { get; set; }
-        public DbSet<Product> Products { get; set; }
-        
-
-        public SampleDbContext()
-        {
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("Server=localhost;Database=MultiLanguageDb;User ID=sa;Password=Yirmibir21*;");
-            base.OnConfiguring(optionsBuilder);
-        }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        public static void ApplyMultiLingualEntities(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Translation>(b =>
             {
-                b.ToTable("Localizations");
+                b.ToTable("Translations");
                 b.HasMany(p => p.TranslationContents)
                     .WithOne(p => p.Translation)
                     .HasForeignKey(p => p.TranslationId);
@@ -37,8 +17,9 @@ namespace SampleProject
             });
             modelBuilder.Entity<TranslationContent>(b =>
             {
-                b.ToTable("LocalizationContents");
+                b.ToTable("TranslationContents");
             });
+            
             foreach (var mutableEntityType in modelBuilder.Model.GetEntityTypes())
             {
                 foreach (var property in mutableEntityType.ClrType.GetProperties())
@@ -50,13 +31,12 @@ namespace SampleProject
                         {
                             b.HasOne(property.Name)
                                 .WithMany()
-                                .HasForeignKey($"{property.Name}Localization");
+                                .HasForeignKey($"{property.Name}TranslationId");
                             b.Navigation(property.Name).AutoInclude();
                         });
                     }
                 }
             }
-            base.OnModelCreating(modelBuilder);
         }
     }
 }

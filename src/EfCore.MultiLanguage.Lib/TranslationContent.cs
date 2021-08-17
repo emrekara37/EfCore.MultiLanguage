@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Globalization;
 
-namespace SampleProject
+namespace EfCore.MultiLanguage.Lib
 {
     public class TranslationContent
     {
@@ -11,12 +11,10 @@ namespace SampleProject
         [ForeignKey(nameof(TranslationId))] 
         public Translation Translation { get; set; }
         public string TranslationId { get; set; }
-        [ForeignKey(nameof(LanguageCode))] public Language Language { get; set; }
         public string LanguageCode { get; set; }
 
         protected TranslationContent()
         {
-            Id = Guid.NewGuid().ToString();
         }
 
         public TranslationContent(string content) : this(content, CultureInfo.CurrentCulture.Name)
@@ -27,12 +25,13 @@ namespace SampleProject
         public TranslationContent(string content, string languageCode) : this()
         {
             SetContent(content, languageCode);
+            Id = Guid.NewGuid().ToString();
+
         }
 
         public void SetContent(string content, string languageCode)
         {
             Content = content;
-            Language = new Language(languageCode);
             LanguageCode = languageCode;
         }
 

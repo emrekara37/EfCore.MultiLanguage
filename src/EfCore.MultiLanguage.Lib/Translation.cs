@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Threading;
 
-namespace SampleProject
+namespace EfCore.MultiLanguage.Lib
 {
     public class Translation : IEnumerable<TranslationContent>
     {
@@ -33,7 +32,7 @@ namespace SampleProject
 
         public TranslationContent GetByLanguage(string language)
         {
-            return TranslationContents.FirstOrDefault(p => p.LanguageCode == language);
+            return TranslationContents.Single(p => p.LanguageCode == language);
         }
         
         public IEnumerator<TranslationContent> GetEnumerator()
@@ -58,17 +57,10 @@ namespace SampleProject
 
         public void RemoveTranslation(string language)
         {
-            var item = TranslationContents.FirstOrDefault(p => p.LanguageCode == language);
-            if (item is null)
-            {
-                throw new NullReferenceException();
-            }
-
+            var item = TranslationContents.Single(p => p.LanguageCode == language);
             TranslationContents.Remove(item);
         }
-        
         public int Count => TranslationContents.Count;
-
         public static implicit operator string(Translation ml) => ml.Current.Content;
         public static explicit operator Translation(string value) => new(value);
 
